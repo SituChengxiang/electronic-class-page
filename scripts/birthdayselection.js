@@ -28,5 +28,5 @@ $(function() {
     } else {
         results = "今天没人生日";
     }
-    document.getElementById("box").innerHTML = (results);
+    document.getElementById("birthday-div").innerHTML = (results);
 });
