@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>宁波市效实中学_白杨2409班主页</title>
+  <meta name="Cache-Control" content="max-age=172800, must-revalidate" />
+  <meta name="description" content="">
+  <meta name="keywords" content="" />
+  <link rel="canonical" href="https://www.nbxiaoshi.net/bjzy_index.asp?BigClassID=471en-US/readme.html" />
+  <link rel="stylesheet" href="css/theme.css" />
+  <script src="scripts/jquery-3.7.0.min.js"></script>
+  <script src="scripts/PageFabric.Dependencies.ChartJs.jscharts.min.js"></script>
+  <link rel="stylesheet" href="css/PageFabric.Dependencies.CookieConsent.cookieconsent.min.css">
+  <script src="scripts/PageFabric.Dependencies.CookieConsent.cookieconsent.min.js"></script>
+  <script src="scripts/PageFabric.Dependencies.MediumZoom.mediumzoom.min.js"></script>
+  <link rel="stylesheet" href="css/PageFabric.Dependencies.Prism.prism.min.css">
+  <script src="scripts/PageFabric.Dependencies.Prism.prism.min.js"></script>
+  <script src="scripts/PageFabric.Framework.PageFabricFramework.min.js"></script>
+  <link rel="stylesheet" href="css/PageFabric.Framework.default.min.css">
+  <link rel="stylesheet" href="css/PageFabric.Framework.default2.min.css">
+  <link rel="stylesheet" href="css/PageFabric.Framework.controls.min.css">
+  <link rel="stylesheet" href="css/PageFabric.Framework.symbolfonts.min.css">
+  <link rel="stylesheet" href="css/PageFabric.Themes.Material.default.min.css">
+  <link rel="stylesheet" href="css/userstyles.css" />
+  <script src="scripts/config.js"></script>
+  <script type='text/javascript'>
+    var PageFunctions = {};
+  </script>
+
+</head>
+
+<body class="pageMedium">
+  <header>
+    &nbsp;
+
+  </header>
+
+  <!--温馨提示，他这自带的jQuery未必好用-->
+
+  <div class="pageWrapper pageFull">
+    <main>
+      <h1 class="text-neutralPrimary">欢迎来到B2409！这里是24届海航的班级主页</h1>
+      <div
+        class="pfBox bgImgFill background-trans height-600 content-vertical-align-center content-horizontal-align-center boxdecoration-acrylic"
+        style="background-image: url(https://api.muvip.cn/api/bing/index.php?rand=false&day=0&info=false); background-position: 50%">
+        <div class="pfCustomCode">
+          <style class="sf-hidden">
+            span {
+              display: inline-block;
+              width: 80px;
+              height: 80px;
+              background-color: rgba(0, 0, 0, 0.545);
+              font-weight: 900;
+              text-align: center;
+              line-height: 80px;
+            }
+          </style>
+          <!--首考倒计时↓，换了种写法，好看一点，可以本地运行，算法差别不大，D2401的也通用-->
+          <div id="timer" style="font-size: 18pt; color: #d8d8d8">
+            <p>距离2024年1月6日首考还有：</p>
+            <br />
+            <span class="day">202</span>
+            天
+            <strong>:</strong>
+            <span class="hour">04</span>
+            小时
+            <strong>:</strong>
+            <span class="minute">22</span>
+            分钟
+            <strong>:</strong>
+            <span class="second">03</span>
+            秒
+            <script src="scripts/contdown.js"></script>
+          </div>
+        </div>
+      </div>
+      <!--上述内容是附了Bing每日一图的API的，在background-image:url中定义，可以换成你喜欢的其他图源或者干脆不要-->
+      <!--求放过！Bing的每日一图很多博客站点都有，不作商业用途也不违法 Microsoft 的使用协议的-->
+      <!--Bing 每日一图的介绍↓ 同样是直接回复的 json 不违反规定-->
+      <div class="pfBox content-horizontal-align-center content-vertical-align-center padding-10">
+        <div id="introduce" align="center" style="font-size: 12pt">
+          <p>世界那么大，我要去看看</p>
+        </div>
+        <script>
+          fetch('http://api.muvip.cn//api/bing/index.php?rand=false&day=0&size=1920x1080&info=true')
+            .then(response => response.json())
+            .then(data => {
+              const introduce = document.querySelector('#introduce');
+              introduce.innerText = '今天的 Bing 每日一图：' + data.title;
+            })
+            .catch(console.error);
+        </script>
+      </div>
+      <!--金山词霸每日一句↓-->
+      <!--金山官方接口返回的数据会有浏览器跨域访问的问题，这就让fetchAPI有点麻烦，jsonp之类的我暂时不会用，所以就先用jQuery的.ajax方法了-->
+      <div
+        class="pfBox content-vertical-align-center content-horizontal-align-center height-auto width-auto bgImgFill padding-10 margin-0 background-themeTertiary boxdecoration-acrylic"
+        style="background-position: 50%">
+        <div class="pfCustomCode" style="font-size: 18pt">
+          <p id="content_span">英文句子:D获取中...</p>
+          <p id="note_span">中文句子:D获取中...</p>
+          <script src="scripts/dailysentense.js"></script>
+        </div>
+      </div>
+      <!--生日列表↓-->
+      <div
+        class="pfBox boxdecoration-acrylic bgImgFill content-horizontal-align-center content-vertical-align-center padding-15 background-themeLight">
+        <div class="pfCustomCode">
+          <div id="birthday-div" class="div2" align="center" style="font-size: 18pt">
+            <p>正在载入同学们的生日...</p>
+          </div>
+          <script src="scripts/birthdayselection.js"></script>
+        </div>
+      </div>
+      <!--此处应有分割线-->
+      <!--求放过！！！被迫无奈加上来的天气 API ，XS气象我们班显示不出来，这对住宿生来说有点要命的 🙇‍-->
+      <div
+        class="pfBox content-vertical-align-center content-horizontal-align-center height-auto width-auto bgImgFill padding-10 margin-0 background-themeTertiary boxdecoration-acrylic"
+        style="background-position: 50%">
+
+        <div id="ww_3ec5a46c0ff91" v='1.3' loc='id'
+          a='{"t":"responsive","lang":"zh","sl_lpl":1,"ids":["wl3283"],"font":"Arial","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"image","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF","cl_persp":"#81D4FA","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722","sl_tof":"7"}'>
+          <a href="https://weatherwidget.org/zh/" id="ww_3ec5a46c0ff91_u" target="_blank">天气插件</a></div>
+        <script async src="https://app2.weatherwidget.org/js/?id=ww_3ec5a46c0ff91"></script>
+
+      </div>
+      <!--鸡汤文学↓-->
+      <div class="pfHorizontalSeparator spaceLineHeight-1 border-tertiary spaceHeight-30">
+        <div class="separatorLine"></div>
+      </div>
+      <article class="height-75 text-align-center">
+        <p style="font-size: 12pt">
+          提前开始对不起审核老师，很多错误真的是在上传之后才看得出来的，抱歉让您多看两次了
+        </p>
+        <p style="font-size: 18pt">
+          本班由来自浙江省各地（除了舟山市）的30位高质量年轻人类男性构成。未来目标为海军航空大学、北京航空航天大学、清华大学或者北京大学（说白了就是一批想上天的年轻男性。）
+        </p>
+        <p style="font-size: 18pt">
+          ”不再回头的，不止那古老的晨光，也不止那些个夜晚的群星和月亮，还有你的青春。青春，是大自然赋予大家最珍贵的礼物，青春充满着力量、信心和希冀。请把烦恼和无奈抛给昨天，面对挑战，无论是输是赢，大家都要全身心地投入，向着目标，全力奔跑。梦要我们亲自实现，世界要我们亲自去看；那些曾经觉得看不到的人，和遇不到的风景；都将一步步走近，出现在我们的生命中。”
+        </p>
+        <p style="text-align: right">By五年高考三年模拟·高考总复习B</p>
+      </article>
+      <!--三大片区加载-->
+      <!--总体思路是为了适应移动端和班牌以及完整大屏幕访问，对于一个区域一分为二（50%填充），然后两边再单独写div，保证内容等高就行，其他杂七杂八的我不是很想搞，干脆纯色+文字大道至简了-->
+      <div class="pfLayout layout50">
+        <div class="pfLayoutColumn">
+          <div
+            class="pfBox height-fill content-vertical-align-center content-horizontal-align-center boxdecoration-none background-themeLight">
+            <img src="https://www.nbxiaoshi.net/WEB_Files/uploadfile/202207/20220726175154222_s.png" />
+          </div>
+        </div>
+        <div class="pfLayoutColumn">
+          <div
+            class="pfBox height-fill content-vertical-align-center padding-15 content-horizontal-align-center background-themeTertiary boxdecoration-acrylic">
+            <div class="pfStackPanel stack-vertical space-20 content-horizontal-align-center">
+              <h4 class="text-neutralPrimary" id="照片墙">照片墙</h4>
+              <article class="text-align-center text-neutralPrimary">
+                <p></p>
+                这里存着&nbsp;
+                <p>我们的某些</p>
+                <p>珍贵影像资料</p>
+                <p>以及我们的快乐时光</p>
+                <p></p>
+                <p></p>
+              </article>
+              <a class="pfButton button-white"
+                href="https://www.nbxiaoshi.net/bjzy_list.asp?typeid=29&amp;BigClassID=471&amp;smallclassid=1466">
+                侧边栏走起&gt;
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pfLayout layout50">
+        <div class="pfLayoutColumn">
+          <div
+            class="pfBox height-fill content-vertical-align-center content-horizontal-align-center boxdecoration-none background-themeLight">
+            <div class="pfStackPanel stack-vertical space-20 content-horizontal-align-center">
+              <h4 id="文章">文章</h4>
+              <article class="text-align-center">
+                <p>理论上来说</p>
+                <p>你可以在这里</p>
+                <p>找到所有我们能发出来的</p>
+                <p>写过的东西</p>
+              </article>
+              <a class="pfButton button-white"
+                href="http://www.nbxiaoshi.net/bjzy_list.asp?typeid=29&amp;BigClassID=471&amp;smallclassid=1465">
+                侧边栏&gt;
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="pfLayoutColumn">
+          <div
+            class="pfBox height-fill content-vertical-align-center content-horizontal-align-center padding-15 boxdecoration-none background-themeSecondary">
+            <div class="pfStackPanel stack-vertical space-20 content-horizontal-align-center">
+              <h4 class="text-white" id="资源区">资源区</h4>
+              <article class="text-align-center text-white">
+                <p>有趣有料</p>
+                <p>还有好康的</p>
+                <p>再来硬核的</p>
+                <p>这不就好活了？</p>
+              </article>
+              <a class="pfButton button-white"
+                href="http://www.nbxiaoshi.net/bjzy_list.asp?typeid=29&amp;BigClassID=471&amp;smallclassid=1491">
+                侧边栏&gt;
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pfLayout layout50">
+        <div class="pfLayoutColumn">
+          <div
+            class="pfBox height-fill content-vertical-align-center content-horizontal-align-center boxdecoration-none background-themeTertiary">
+            <div class="pfStackPanel stack-vertical space-20 content-horizontal-align-center">
+              <h4 id="听歌">听歌</h4>
+              <article class="text-align-center">
+                <p>美育包括音乐</p>
+                <p>艺术塑造人生</p>
+                <p>我们对声学的追求</p>
+                <p>从未止步</p>
+              </article>
+              <a class="pfButton button-white"
+                href="www.nbxiaoshi.net/bjzy_list.asp?typeid=29&amp;BigClassID=471&amp;smallclassid=1467">
+                侧边栏&gt;
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="pfLayoutColumn">
+          <div
+            class="pfBox height-fill content-vertical-align-center content-horizontal-align-center padding-15 boxdecoration-none background-themeLighter">
+            <div class="pfStackPanel stack-vertical space-20 content-horizontal-align-center">
+              <h4 id="我们的骄傲">我们的骄傲</h4>
+              <article class="text-align-center">
+                <p>岁月悠悠</p>
+                <p>光阴漫漫</p>
+                <p>我们从未远去</p>
+                <p>也总会再次与你同行</p>
+              </article>
+              <a class="pfButton button-white"
+                href="www.nbxiaoshi.net/bjzy_list.asp?typeid=29&amp;BigClassID=471&amp;smallclassid=1520">
+                侧边栏&gt;
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--最下面的正确用法-->
+      <footer>
+        <div class="pfBox background-themeLighterAlt padding-0 content-vertical-align-center height-180">
+          <div class="pfBox syncWithContentWidth">
+            <div class="pfLayout layout50">
+              <div class="pfLayoutColumn">
+                <div class="pfCustomCode">
+                  <p>本页API：</p>
+                  <ul>
+                    <li>孤狼部落（Bing每日一图和介绍）</li>
+                    <li>金山词霸（双语每日一句）</li>
+                    <li>天气网（天气预报）</li>
+                  </ul>
+                  <p>
+                    当前主页版本：
+                    <a href="https://situchengxiang.github.io/FireworksCompany.girhub.io/kuan-frog-runner/runner.html">
+                      3.0
+                    </a>.3.18
+                  </p>
+                </div>
+              </div>
+              <div class="pfLayoutColumn">
+                <article class="height-75 text-align-default">
+                  <p>这个班级主页由Fabric+VSCode构建，有需代码自取，侵删</p>
+                  <p>联系方式：QQ 896048176 或者 2892406185</p>
+                  <p>如果实在急着找人的话，直接来白杨的教学楼3楼找我们</p>
+                  <p>生日有错或者想写农历的，自己来找我</p>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+</html>
