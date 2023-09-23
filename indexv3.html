@@ -8,7 +8,7 @@
   <meta name="Cache-Control" content="max-age=172800, must-revalidate" />
   <meta name="description" content="">
   <meta name="keywords" content="" />
-  <link rel="canonical" href="https://www.nbxiaoshi.net/bjzy_index.asp?BigClassID=471en-US/readme.html" />
+  <link rel="canonical" href="https://www.nbxiaoshi.net/bjzy_index.asp?BigClassID=471" />
   <link rel="stylesheet" href="css/theme.css" />
   <script src="scripts/jquery-3.7.0.min.js"></script>
   <script src="scripts/PageFabric.Dependencies.ChartJs.jscharts.min.js"></script>
@@ -25,10 +25,6 @@
   <link rel="stylesheet" href="css/PageFabric.Themes.Material.default.min.css">
   <link rel="stylesheet" href="css/userstyles.css" />
   <script src="scripts/config.js"></script>
-  <script type='text/javascript'>
-    var PageFunctions = {};
-  </script>
-
 </head>
 
 <body class="pageMedium">
@@ -37,7 +33,7 @@
 
   </header>
 
-  <!--温馨提示，他这自带的jQuery未必好用-->
+  <!--温馨提示，他这自带的jQuery未必好用，也只是为了本地环境调试准备的，实际使用环境请删掉对于jQuery的引入-->
 
   <div class="pageWrapper pageFull">
     <main>
@@ -72,7 +68,42 @@
             <strong>:</strong>
             <span class="second">03</span>
             秒
-            <script src="scripts/contdown.js"></script>
+            <script>
+              //获取元素
+              var day = document.querySelector(".day");
+              var hour = document.querySelector(".hour");
+              var minute = document.querySelector(".minute");
+              var second = document.querySelector(".second");
+              //获取截止时间的时间戳（单位毫秒）
+              var inputTime = +new Date("2024-1-6 00:00:00");
+
+              //我们先调用countDown函数，可以避免在打开界面后停一秒后才开始倒计时
+              countDown();
+              //定时器 每隔一秒变化一次
+              setInterval(countDown, 1000);
+              function countDown() {
+                //获取当前时间的时间戳（单位毫秒）
+                var nowTime = +new Date();
+                //把剩余时间毫秒数转化为秒
+                var times = (inputTime - nowTime) / 1000;
+                //计算天数 转化为整数
+
+                var d = parseInt(times / 86400);
+                day.innerHTML = d;
+                //计算小时数 转化为整数
+                var h = parseInt(times / 60 / 60 % 24);
+                //如果小时数小于 10，要变成 0 + 数字的形式 赋值给盒子
+                hour.innerHTML = h < 10 ? "0" + h : h;
+                //计算分钟数 转化为整数
+                var m = parseInt(times / 60 % 60);
+                //如果分钟数小于 10，要变成 0 + 数字的形式 赋值给盒子
+                minute.innerHTML = m < 10 ? "0" + m : m;
+                //计算秒数 转化为整数
+                var s = parseInt(times % 60);
+                //如果秒钟数小于 10，要变成 0 + 数字的形式 赋值给盒子
+                second.innerHTML = s < 10 ? "0" + s : s;
+              }
+            </script>
           </div>
         </div>
       </div>
@@ -101,7 +132,30 @@
         <div class="pfCustomCode" style="font-size: 18pt">
           <p id="content_span">英文句子:D获取中...</p>
           <p id="note_span">中文句子:D获取中...</p>
-          <script src="scripts/dailysentense.js"></script>
+          <script>//友情提示这玩意需要加载jQuery，因为金山词霸返回的这玩意是跨域访问得到的，native需要jsonp或者fetchAPI顶级用法
+            //欢迎开发不用jQuery的版本，或者用hitoko（一言）的也可以
+            
+            $(function () {
+                $.ajax({
+                  async: true,
+                  type: 'GET',
+                  dataType: 'jsonp',
+                  jsonp: 'callback',
+                  jsonpCallback: 'callbackfunction',
+                  url: 'https://open.iciba.com/dsapi/',
+                  data: '',
+                  timeout: 3000,
+                  contentType: 'application/json;utf-8',
+                  success: function (data) {
+                    console.log(data);
+                    content = data.content;
+                    note = data.note;
+                    content_span.innerHTML = content;
+                    note_span.innerHTML = note;
+                  },
+                });
+              });
+              </script>
         </div>
       </div>
       <!--生日列表↓-->
@@ -111,30 +165,144 @@
           <div id="birthday-div" class="div2" align="center" style="font-size: 18pt">
             <p>正在载入同学们的生日...</p>
           </div>
-          <script src="scripts/birthdayselection.js"></script>
+          <script type="text/javascript">
+            $(function () {
+              var names = new Array(
+                '陈俊义',
+                '陈星宇',
+                '陈泽玮',
+                '陈作亚',
+                '单梓航',
+                '丁意伦',
+                '董晨烨',
+                '傅天祈',
+                '胡俊洋',
+                '胡峻浩',
+                '贾安迪',
+                '姜仁杰',
+                '蒋京',
+                '李响',
+                '林洁',
+                '刘宇杰',
+                '刘浙楠',
+                '柳岷昊',
+                '毛毅涛',
+                '阮俊翔',
+                '沈宽、徐睿',
+                '时习之',
+                '孙嘉玥',
+                '王宇轩',
+                '吴明锐',
+                '徐浩',
+                '徐翊博',
+                '张顾宇晨',
+                '朱怡帆'
+              );
+              var birthdays = new Array(
+                '09.25',
+                '12.21',
+                '10.14',
+                '11.19',
+                '08.20',
+                '04.26',
+                '06.09',
+                '12.02',
+                '03.02',
+                '01.28',
+                '12.22',
+                '01.08',
+                '01.23',
+                '03.11',
+                '05.28',
+                '08.11',
+                '04.29',
+                '10.06',
+                '05.18',
+                '09.24',
+                '01.17',
+                '01.11',
+                '06.10',
+                '06.03',
+                '07.17',
+                '10.27',
+                '11.09',
+                '10.29',
+                '10.01'
+              );
+              var results = '',
+                flag = false;
+              for (var i = 0; i < names.length; i++) {
+                var dt = '';
+                if (new Date().getMonth() > 8) dt = new Date().getMonth() + 1 + '.';
+                else dt = '0' + (new Date().getMonth() + 1) + '.';
+                if (new Date().getDate() > 9) dt = dt + new Date().getDate();
+                else dt = dt + '0' + new Date().getDate();
+                if (birthdays[i] == dt) {
+                  results = results + names[i] + ',';
+                  flag = true;
+                }
+              }
+              if (flag) {
+                results = results.substring(0, results.length - 1) + ' 今天生日！';
+              } else {
+                results = '今天班里没人生日呐';
+              }
+              document.getElementById('birthday-div').innerHTML = results;
+            });
+          </script>
         </div>
       </div>
       <!--此处应有分割线-->
       <!--求放过！！！被迫无奈加上来的天气 API ，XS气象我们班显示不出来，这对住宿生来说有点要命的 🙇‍-->
-      <div
-        class="pfBox content-vertical-align-center content-horizontal-align-center height-auto width-auto bgImgFill padding-10 margin-0 background-themeTertiary boxdecoration-acrylic"
-        style="background-position: 50%">
-
-        <div id="ww_3ec5a46c0ff91" v='1.3' loc='id'
-          a='{"t":"responsive","lang":"zh","sl_lpl":1,"ids":["wl3283"],"font":"Arial","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"image","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF","cl_persp":"#81D4FA","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722","sl_tof":"7"}'>
-          <a href="https://weatherwidget.org/zh/" id="ww_3ec5a46c0ff91_u" target="_blank">天气插件</a></div>
-        <script async src="https://app2.weatherwidget.org/js/?id=ww_3ec5a46c0ff91"></script>
-
-      </div>
+      <div id="ww_af398e243dd9a" v='1.3' loc='id'
+        a='{"t":"responsive","lang":"zh","sl_lpl":1,"ids":["wl3283"],"font":"Arial","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"image","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF","cl_persp":"#81D4FA","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722","sl_tof":"5"}'>
+        More forecasts: <a href="https://oneweather.org/de/deutschland/30_tage/" id="ww_af398e243dd9a_u"
+          target="_blank">wettervorhersage 4 wochen</a></div>
+      <script async>
+        function requestGet(url, callback, id, gen) {
+          var request = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP"); request.onreadystatechange = function () {
+            if (request.readyState === XMLHttpRequest.DONE && request.status === 200) { callback(id, request.responseText, gen) }
+          }; request.open('GET', url); request.send()
+        }
+        function requestPost(url, callback, params, id) {
+          var request = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP"); request.onreadystatechange = function () {
+            if (request.readyState === XMLHttpRequest.DONE && request.status === 200) { callback(request.responseText, id) }
+          }; request.open('POST', url, !0); request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); request.send(params)
+        }
+        function getDataFromApi(id, i, gen) {
+          var v = document.getElementById(id).getAttribute("v"); var a = document.getElementById(id).getAttribute("a"); var l = document.getElementById(id).getAttribute("loc"); var u = document.getElementById(id + '_u').getAttribute("href") + '|||' + document.getElementById(id + '_u').innerHTML; if (gen == 1) { var ub = '' }
+          else { var ub = document.getElementById(id).innerHTML }
+          var i = i; var g = gen; var params = 'v=' + v + '&a=' + a + '&l=' + l + '&u=' + u + '&ub=' + ub + '&i=' + i + '&g=' + g + '&id=' + id; requestPost('https://app2.weatherwidget.org/data/', updateOnPage, params, id)
+        }
+        function collectData(id, gen) {
+          if (document.getElementById(id).getAttribute("loc") === 'auto') { requestGet('https://ip.weatherwidget.org/', getDataFromApi, id, gen) }
+          else { getDataFromApi(id, !1, gen) }
+        }
+        function updateOnPage(data, id) {
+          if (typeof JSON.parse === "undefined") { data = JSON.decode(data) }
+          else { data = JSON.parse(data) }
+          if (data.hasOwnProperty("a")) {
+            if (data.a.hasOwnProperty("html")) { document.getElementById(id).innerHTML = data.a.html }
+            if (data.a.hasOwnProperty("style")) { document.getElementById(id).style.cssText = data.a.style }
+            if (data.a.hasOwnProperty("jsCode")) { var script = document.createElement('script'); script.type = "text/javascript"; script.async = !1; script.text = data.a.jsCode; document.getElementsByTagName('head')[0].appendChild(script) }
+            if (data.a.hasOwnProperty("ub")) { document.getElementById(id + '_info_box_inner').innerHTML = data.a.ub; updateInfobox(id, data.a.ub); loadingToggle(id, 2) }
+          }
+          else if (data.hasOwnProperty("error_code")) { document.getElementById(id).innerHTML = ''; console.log('weatherwidget.org / Error: ' + data.error_msg + ' (Error code ' + data.error_code + ')') }
+        }
+        function updateWidget(id, gen) {
+          if (gen === 1) { loadingToggle(id, 1) }
+          collectData(id, gen)
+        }
+        updateWidget('ww_af398e243dd9a', 0);
+      </script>
       <!--鸡汤文学↓-->
       <div class="pfHorizontalSeparator spaceLineHeight-1 border-tertiary spaceHeight-30">
         <div class="separatorLine"></div>
       </div>
       <article class="height-75 text-align-center">
-        <p style="font-size: 18pt">
-        </p>本班曾经由来自浙江省各地的30位学生组成。
-        在海航的指挥下经过了两年的光阴,现存的17位同学将继续前进
-        <p style="font-size: 18pt">
+        <p style="font-size: 20pt">
+          本班曾经由来自浙江省各地的30位学生组成。
+          在海航的指挥下经过了两年的光阴,现存的17位同学将继续前进。<br>
           ”敌强如斯，能如怒涛般击溃我军，我们或许不会马上成功，但将屡败屡战，百战不饶。 ”
         </p>
         <p style="text-align: right">富兰克林.罗斯福(于诺曼底登陆前)</p>
@@ -254,16 +422,14 @@
               <div class="pfLayoutColumn">
                 <div class="pfCustomCode">
                   <p>本页API：</p>
-                  <ul>
-                    <li>孤狼部落（Bing每日一图和介绍）</li>
-                    <li>金山词霸（双语每日一句）</li>
-                    <li>天气网（天气预报）</li>
-                  </ul>
+                    MUZI（Bing每日一图和介绍）<br>
+                    金山词霸（双语每日一句）<br>
+                    OneWeather（天气预报）<br>
                   <p>
                     当前主页版本：
                     <a href="https://situchengxiang.github.io/FireworksCompany.girhub.io/kuan-frog-runner/runner.html">
                       3.0
-                    </a>.3.18
+                    </a>.9.23
                   </p>
                 </div>
               </div>
