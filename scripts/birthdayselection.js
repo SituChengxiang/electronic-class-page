@@ -24,9 +24,9 @@ $(function() {
         }
     }
     if (flag) {
-        results = results.substring(0, results.length - 1) + " " + "今天生日！";
+        results = results.substring(0, results.length - 1) + " " + "生日快乐🎂🎂！！！";
     } else {
         results = "今天没人生日";
     }
-    document.getElementById("box").innerHTML = (results);
+    document.getElementById("birthday-div").innerHTML = (results);
 });
