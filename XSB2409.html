@@ -531,7 +531,7 @@
           <p>世界那么大，我要去看看</p>
         </div>
         <script>
-          fetch('http://api.muvip.cn//api/bing/index.php?rand=false&day=0&size=1920x1080&info=true')
+          fetch('https://api.muvip.cn/api/bing/index.php?rand=false&day=0&size=1920x1080&info=true')
             .then(response => response.json())
             .then(data => {
               const introduce = document.querySelector('#introduce');
